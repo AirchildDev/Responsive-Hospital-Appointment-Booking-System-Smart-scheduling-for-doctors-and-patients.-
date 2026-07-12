@@ -1,0 +1,19 @@
+{% load static %}
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <ul>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <span>&copy; 2026 Hospital System</span>
+    </div>
+        <div class="footer-section social-icons">
+      <a href="#"><img src="{% static 'hospital/images/facebook.png' %}" alt="Facebook"></a>
+      <a href="#"><img src="{% static 'hospital/images/twitter.png' %}" alt="Twitter"></a>
+    </div>
+
+  </div>
+</footer>

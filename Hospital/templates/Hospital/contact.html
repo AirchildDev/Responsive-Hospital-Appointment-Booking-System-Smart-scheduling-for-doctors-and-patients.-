@@ -1,0 +1,28 @@
+{% extends 'Hospital/main.html' %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<div class="page-section">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need assistance, please reach out to us:</p>
+    <ul>
+        <li><strong>Phone:</strong> +234 800 123 4567</li>
+        <li><strong>Email:</strong> hospital@example.com</li>
+        <li><strong>Address:</strong> 123 Health Street, Lagos, Nigeria</li>
+    </ul>
+
+    <h3>Send us a message</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea name="message" required></textarea>
+
+        <button type="submit">Send</button>
+    </form>
+</div>
+{% endblock %}

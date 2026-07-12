@@ -1,0 +1,231 @@
+/* Global body styling */
+body {
+    font-family: Arial, sans-serif; /* Clean, readable font */
+    margin: 0;                      /* Remove default margins */
+    color: #333;                    /* Neutral text color */
+    /* FIX: If you want background image here, ensure url() closes properly */
+   /* background-image: url('/static/hospital/images/hospital_pic.png'); */
+    padding-top: 60px; /* adjust based on navbar height */
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #013333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* logo left + center links */
+    z-index: 1000;
+    height: 60px;
+}
+
+.navbar-logo img {
+    height: 200px;
+}
+
+/* Center section */
+.navbar-center {
+    flex: 1;                     /* take available space */
+    display: flex;
+    justify-content: center;     /* center horizontally */
+    align-items: center;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0px;
+}
+
+.navbar-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.navbar-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer styling
+.footer {
+    background: rgba(0, 128, 128, 0.9); /* Same teal as navbar */
+    /* color: white;                       White text */
+    /* text-align: center;                 Centered text */
+    /* padding: 10px;                      Spacing */
+/* } */
+
+/* Form and dashboard containers */
+.form-container, .dashboard { 
+    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+    margin: 50px auto;                     /* Centered with margin */
+    padding: 20px;                        /* Inner spacing */
+    border-radius: 8px;                    /* Rounded corners */
+    max-width: 500px;                      /*Limit width for readability */
+} 
+
+/* Input fields */
+input, select, textarea, button {
+    width: 100%;               /* Full width */
+    margin: 10px 0;            /* Vertical spacing */
+    padding: 10px;             /* Inner spacing */
+    border-radius: 5px;        /* Rounded corners */
+    border: 1px solid #ccc;    /* Light border */
+    box-sizing: border-box;    /* FIX: ensures padding doesn’t break layout */
+}
+
+/* Buttons */
+button {
+    background: teal;          /* Teal background */
+    color: white;              /* White text */
+    border: none;              /* Remove border */
+    cursor: pointer;           /* Pointer on hover */
+}
+
+button:hover {
+    background: darkcyan;      /* Darker teal on hover */
+}
+
+/* Logout link */
+.logout {
+    text-align: right;         /* Align logout to right */
+}
+
+.logout a {
+    color: red;                /* Red for emphasis */
+    font-weight: bold;         /* Bold text */
+    text-decoration: none;     /* No underline */
+}
+
+/* Tables */
+table {
+    width: 100%;               /* Full width */
+    border-collapse: collapse; /* Merge borders */
+    margin-top: 20px;          /* Space above table */
+}
+
+table th, table td {
+    border: 1px solid #ccc;    /* Light border */
+    padding: 10px;             /* Inner spacing */
+    text-align: center;        /* Centered text */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px;              /* Smaller gap */
+    }
+    .form-container, .dashboard {
+        width: 90%;             /* Expand to fit smaller screens */
+    }
+}
+
+.page-section {
+    padding: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gallery-item {
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.gallery-item p {
+    margin-top: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #013333;
+    color: #fff;
+    padding: 10px 20px;          /* same as navbar */
+    display: flex;
+    align-items: center;         /* vertical centering */
+    justify-content: space-between;
+    z-index: 1000;
+    height: 60px;                /* same height as navbar */
+    font-size: 0.85em;
+    white-space: nowrap;         /* prevent text wrapping */
+    overflow: hidden;            /* hide overflow */
+    text-overflow: ellipsis;     /* add "..." if text too long */
+}
+
+.footer-container {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-section {
+    margin: 0 10px;
+    flex-shrink: 1;              /* allow sections to shrink */
+}
+
+.footer-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85em;
+}
+
+.footer-section ul li a:hover {
+    color: #3498db;
+}
+
+.social-icons a img {
+    width: 20px;
+    margin: 0 5px;
+}
+
+/* Prevent overlap with forms/content */
+body {
+    padding-bottom: 60px; /* matches footer height */
+}
+
+.page-section {
+    background-color: #F4D99E; /* solid white with slight transparency */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 40px auto; /* center the box */
+    color: #333;       /* dark text for readability */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* subtle shadow */
+}
+
+

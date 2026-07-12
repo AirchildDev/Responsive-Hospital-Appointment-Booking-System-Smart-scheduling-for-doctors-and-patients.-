@@ -1,0 +1,27 @@
+{% extends 'Hospital/main.html' %}
+{% block title %}Doctor List{% endblock %}
+{% block content %}
+<div class="dashboard">
+    <!-- Logout button -->
+    <div class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <h2>All Doctors</h2>
+    <!-- Doctor table -->
+    <table>
+        <tr><th>Name</th><th>Specialization</th><th>Phone</th><th>Gender</th></tr>
+        {% for doctor in doctors %}
+        <tr>
+            <!-- FIX: ensure proper name display -->
+            <td>{{ doctor.user.get_full_name }}</td>
+            <td>{{ doctor.specialization }}</td>
+            <td>{{ doctor.phone|default:"N/A" }}</td> <!-- FIX: handle missing phone -->
+            <td>{{ doctor.gender }}</td>
+        </tr>
+        {% empty %}
+        <!-- FIX: handle empty doctor list -->
+        <tr><td colspan="4">No doctors found.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

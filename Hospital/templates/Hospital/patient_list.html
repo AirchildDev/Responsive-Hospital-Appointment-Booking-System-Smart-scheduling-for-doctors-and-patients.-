@@ -1,0 +1,27 @@
+{% extends 'Hospital/main.html' %}
+{% block title %}Patient List{% endblock %}
+{% block content %}
+<div class="dashboard">
+    <!-- Logout button -->
+    <div class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <h2>All Patients</h2>
+    <!-- Patient table -->
+    <table>
+        <tr><th>Name</th><th>Age</th><th>Phone</th><th>Gender</th></tr>
+        {% for patient in patients %}
+        <tr>
+            <!-- FIX: safer to call get_full_name on user object -->
+            <td>{{ patient.user.get_full_name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.phone|default:"N/A" }}</td> <!-- FIX: handle missing phone -->
+            <td>{{ patient.gender }}</td>
+        </tr>
+        {% empty %}
+        <!-- FIX: handle empty patient list -->
+        <tr><td colspan="4">No patients found.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

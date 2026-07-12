@@ -1,0 +1,48 @@
+{% load static %}
+{% load user_extras %}
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        {% if request.user.is_authenticated %}
+            {% if request.user|is_doctor %}
+                <a href="{% url 'doctor_dashboard' %}">
+                    <img src="{% static 'hospital/images/hospital-logo.png' %}" alt="Hospital Logo">
+                </a>
+            {% elif request.user|is_patient %}
+                <a href="{% url 'patient_home' %}">
+                    <img src="{% static 'hospital/images/hospital-logo.png' %}" alt="Hospital Logo">
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img src="{% static 'hospital/images/hospital-logo.png' %}" alt="Hospital Logo">
+                </a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'patient_register' %}">
+                <img src="{% static 'hospital/images/hospital-logo.png' %}" alt="Hospital Logo" class="hospital-logo">
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="navbar-center">
+        <ul class="navbar-links">
+            <!-- Home Link styled same as others -->
+            {% if request.user.is_authenticated %}
+                {% if request.user|is_doctor %}
+                    <li><a href="{% url 'doctor_dashboard' %}">Home</a></li>
+                {% elif request.user|is_patient %}
+                    <li><a href="{% url 'patient_home' %}">Home</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Home</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="{% url 'patient_register' %}">Home</a></li>
+            {% endif %}
+
+            <!-- Other nav items -->
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </div>
+</nav>

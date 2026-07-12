@@ -1,0 +1,26 @@
+{% extends 'Hospital/main.html' %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+<div class="page-section">
+    <h2>Gallery</h2>
+    <p>Explore our hospital facilities and dedicated staff.</p>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="/static/hospital/images/hospital_pic.png" alt="Hospital Building">
+            <p>Hospital Building</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/hospital/images/doctors.png" alt="Our Doctors">
+            <p>Our Doctors</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/hospital/images/patient_care.png" alt="Patient Care">
+            <p>Patient Care</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/static/hospital/images/lab.png" alt="Laboratory">
+            <p>Laboratory</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'Hospital/main.html' %}
+{% block title %}
+    {% if is_update %}
+        Update Appointment
+    {% else %}
+        Book New Appointment
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>
+        {% if is_update %}
+            {% if is_doctor_update %}
+                Update Appointment for {{ appointment.patient.user.get_full_name }}
+                ({{ appointment.patient.gender }}, {{ appointment.patient.age }} years old)
+            {% else %}
+                Update Your Appointment
+            {% endif %}
+        {% else %}
+            Book a New Appointment
+        {% endif %}
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Doctor dropdown: only for new bookings or patient updates -->
+        {% if not is_doctor_update %}
+            <label for="doctor">Doctor:</label>
+            <select name="doctor" required>
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.id }}" {% if is_update and doctor.id == appointment.doctor.id %}selected{% endif %}>
+                        Dr. {{ doctor.user.get_full_name }} ({{ doctor.gender }})
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        <!-- Patient info: visible but read-only for doctors -->
+        {% if is_doctor_update %}
+            <p><strong>Patient:</strong> {{ appointment.patient.user.get_full_name }}</p>
+            <p><strong>Gender:</strong> {{ appointment.patient.gender }}</p>
+            <p><strong>Age:</strong> {{ appointment.patient.age }}</p>
+        {% endif %}
+
+        <!-- Date field -->
+        <label for="date">Date:</label>
+        <input type="date" name="date" value="{% if is_update %}{{ appointment.date }}{% endif %}" required>
+
+        <!-- Time field -->
+        <label for="time">Time:</label>
+        <input type="time" name="time" value="{% if is_update %}{{ appointment.time }}{% endif %}" required>
+
+        <!-- Description field: always included -->
+        <label for="description">Description:</label>
+        <textarea name="description" required>
+            {% if is_update %}{{ appointment.description }}{% endif %}
+        </textarea>
+
+        <button type="submit">
+            {% if is_update %}Update Appointment{% else %}Book Appointment{% endif %}
+        </button>
+    </form>
+</div>
+{% endblock %}

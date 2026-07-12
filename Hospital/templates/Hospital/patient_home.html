@@ -1,0 +1,73 @@
+{% extends 'Hospital/main.html' %}
+{% block title %}Patient Home{% endblock %}
+{% block content %}
+<div class="dashboard">
+    <!-- Logout button (POST form for security) -->
+    <div class="logout">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    {% if confirm_delete %}
+    <h2>Confirm Delete</h2>
+    <p>
+        Are you sure you want to delete this appointment with
+        Dr. {{ appointment.doctor.user.get_full_name }} ({{ appointment.doctor.gender }})
+        on {{ appointment.date }} at {{ appointment.time }}?
+    </p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-danger">Yes, Delete</button>
+        <a href="{% url 'patient_home' %}" class="btn-cancel">Cancel</a>
+    </form>
+    {% else %}
+    <!-- Welcome message -->
+    <div class="welcome-box">
+        {% if current_hour < 12 %} <h1>Good morning, {{ request.user.username }}!</h1>
+            {% elif current_hour < 18 %} <h1>Good afternoon, {{ request.user.username }}!</h1>
+                {% else %}
+                <h1>Good evening, {{ request.user.username }}!</h1>
+                {% endif %}
+                <p>
+                    Welcome to your Patient Dashboard.
+                    Here you can manage your appointments, view your medical records, and stay connected with your healthcare
+                    team.
+                </p>
+    </div>
+    <h3>Your Appointments</h3>
+    <!-- Appointment table -->
+    <table>
+        <tr>
+            <th>Doctor</th>
+            <th>Gender</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.doctor.user.get_full_name }}</td>
+            <td>{{ appointment.doctor.gender }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.time }}</td>
+            <td>{{ appointment.description }}</td>
+            <td>
+                <a href="{% url 'update_appointment' appointment.id %}">Edit</a> |
+                <a href="{% url 'delete_appointment' appointment.id %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No appointments found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Link to book new appointment -->
+    <a href="{% url 'book_appointment' %}" class="btn">Book New Appointment</a>
+    {% endif %}
+</div>
+{% endblock %}
