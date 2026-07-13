@@ -51,11 +51,11 @@ The diagram illustrates:
 ## 📸 Screenshots:
 
 <p align="center">
-  <img src="assets/apppatient.png" alt="Login Page" width="200" style="margin:5px"/>
-  <img src="assets/appdoctor.png" alt="Dashboard" width="200" style="margin:5px"/>
-  <img src="assets/appregister.png" alt="Booking Form" width="200" style="margin:5px"/>
-  <img src="assets/applogin.png" alt="Patient Home" width="200" style="margin:5px"/>
-  <img src="assets/appgallery.png" alt="Doctor Dashboard" width="200" style="margin:5px"/>
+  <img src="assets/apppatient.png" alt="Patient Dashboard" width="200" style="margin:5px"/>
+  <img src="assets/appdoctor.png" alt="Doctor Dashboard" width="200" style="margin:5px"/>
+  <img src="assets/appregister.png" alt="Patient Registration Form" width="200" style="margin:5px"/>
+  <img src="assets/applogin.png" alt="Login Page" width="200" style="margin:5px"/>
+  <img src="assets/appgallery.png" alt="Gallery" width="200" style="margin:5px"/>
 </p>
 
 ## 📜 License
