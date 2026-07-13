@@ -12,7 +12,7 @@
     <h2>
         {% if is_update %}
             {% if is_doctor_update %}
-                Update Appointment for {{ appointment.patient.user.get_full_name }}
+                Update Appointment for {{ appointment.patient }}
                 ({{ appointment.patient.gender }}, {{ appointment.patient.age }} years old)
             {% else %}
                 Update Your Appointment
@@ -39,7 +39,7 @@
 
         <!-- Patient info: visible but read-only for doctors -->
         {% if is_doctor_update %}
-            <p><strong>Patient:</strong> {{ appointment.patient.user.get_full_name }}</p>
+            <p><strong>Patient:</strong> {{ appointment.patient }}</p>
             <p><strong>Gender:</strong> {{ appointment.patient.gender }}</p>
             <p><strong>Age:</strong> {{ appointment.patient.age }}</p>
         {% endif %}
@@ -54,9 +54,7 @@
 
         <!-- Description field: always included -->
         <label for="description">Description:</label>
-        <textarea name="description" required>
-            {% if is_update %}{{ appointment.description }}{% endif %}
-        </textarea>
+        <textarea name="description" required>{% if is_update %}{{ appointment.description }}{% endif %}</textarea>
 
         <button type="submit">
             {% if is_update %}Update Appointment{% else %}Book Appointment{% endif %}

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from datetime import datetime
 from django.utils import timezone
+from django import forms
 
 
 # Home/Landing page view
@@ -327,4 +328,7 @@ def contact(request):
     return render(request, 'Hospital/contact.html')
 
 
-
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['date', 'time', 'description']

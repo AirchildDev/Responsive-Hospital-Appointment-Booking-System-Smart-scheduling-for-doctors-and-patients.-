@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django import forms
 # Doctor model: linked to Django's built-in User model
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Each doctor has a user account
@@ -15,8 +15,6 @@ class Doctor(models.Model):
     def __str__(self):
         return f"Dr. {self.user.get_full_name() or self.user.username} - {self.specialization}"
 
-from django.db import models
-from django.contrib.auth.models import User
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Each patient has a user account
@@ -42,3 +40,14 @@ class Appointment(models.Model):
 
     def __str__(self):
         return f"{self.patient} with {self.doctor} on {self.date} at {self.time}"
+    
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['date', 'time', 'description']  # exclude patient
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['date'].widget.attrs.update({'class': 'form-control'})
+        # Add other styling here
+
